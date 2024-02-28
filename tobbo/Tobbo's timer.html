@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lamborghini Giveaway Countdown</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("tobbo/Lamborghini.jpg");
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+      }
+      .timer-container {
+        width: 300px;
+        height: 200px;
+        margin: 100px auto;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .timer-content {
+        padding: 20px;
+      }
+      .timer-content div {
+        font-size: 24px;
+        margin-bottom: 10px;
+        #header {
+          font-size: 48px;
+          text-align: center;
+          margin-top: 10%;
+          color: white;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      In the realm of aspirations, where speed meets style and dreams ignite,
+      there lies a shimmering promise—a Lamborghini giveaway. It's not just
+      about the sleek lines or the thundering power; it's about the possibility,
+      the chance for someone to grasp the wheel of their dreams and accelerate
+      towards a new horizon. In this giveaway, hope takes the form of a roaring
+      engine, and anticipation rides shotgun with every entrant. It's more than
+      just a car—it's a symbol of freedom, of reaching beyond boundaries, of
+      turning fantasies into reality. So, as the world eagerly awaits the
+      announcement, hearts beat with the rhythm of possibility, knowing that
+      somewhere, someone's life is about to change in the most exhilarating of
+      ways.
+    </h3>
+    <div class="timer-container">
+      <div class="timer-content">
+        <div id="days">00</div>
+        <div id="hours">00</div>
+        <div id="minutes">00</div>
+        <div id="seconds">00</div>
+      </div>
+    </div>
+
+    <script>
+      const giveawayEndDate = new Date("2024-03-17T00:00:00");
+
+      function updateCountdown() {
+        const now = new Date();
+        const timeRemaining = giveawayEndDate - now;
+
+        if (timeRemaining <= 0) {
+          document.getElementById("days").textContent = "00";
+          document.getElementById("hours").textContent = "00";
+          document.getElementById("minutes").textContent = "00";
+          document.getElementById("seconds").textContent = "00";
+        } else {
+          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+          document.getElementById("days").textContent = formatTime(days);
+          document.getElementById("hours").textContent = formatTime(hours);
+          document.getElementById("minutes").textContent = formatTime(minutes);
+          document.getElementById("seconds").textContent = formatTime(seconds);
+        }
+      }
+
+      function formatTime(time) {
+        return time < 10 ? `0${time}` : time;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
